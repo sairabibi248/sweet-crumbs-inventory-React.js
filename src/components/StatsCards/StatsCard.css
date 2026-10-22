@@ -1,0 +1,61 @@
+.stats-cards-grid {
+  display: flex;
+  gap: 20px;
+  padding: 20px 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.stats-card {
+  flex: 1;
+  padding: 16px 20px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+}
+
+.total {
+  background-color: #fcf4ec;
+  border-color: #e8d5c4;
+}
+
+.expired {
+  background-color: #fff0f0;
+  border-color: #f7cfcf;
+}
+
+.soldout {
+  background-color: #f3f4f6;
+  border-color: #d1d5db;
+}
+
+.lowstock {
+  background-color: #fffbeb;
+  border-color: #fce7f3;
+}
+
+.stats-card-header {
+  margin-bottom: 12px;
+}
+
+.stats-title {
+  font-size: 11px;
+  font-weight: bold;
+  color: #7a5c43;
+}
+
+.stats-card-body {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.stats-value {
+  font-size: 24px;
+  margin: 0;
+  color: #4a2c11;
+}
+
+.stats-unit {
+  font-size: 12px;
+  color: #8c7361;
+}

@@ -1,0 +1,29 @@
+
+.item-grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+
+.item-grid-container > .item-card:nth-child(4n + 1) {
+  background-color: #fdf2f8; 
+}
+
+.item-grid-container > .item-card:nth-child(4n + 2) {
+  background-color: #fcf8f2; 
+}
+
+.item-grid-container > .item-card:nth-child(4n + 3) {
+  background-color: #fff7ed; 
+}
+.item-grid-container > .item-card:nth-child(4n + 4) {
+  background-color: #f4f4f7; 
+
+}
+.empty-message {
+  text-align: center;
+  color: #888;
+  padding: 40px;
+}

@@ -2,44 +2,18 @@ import React from "react";
 import StatsCard from "./StatsCard";
 import "./StatsCard.css";
 
-const StatsCards = () => {
+const StatsCards = ({ stats }) => {
   const statsList = [
-    {
-      title: "TOTAL PRODUCTS",
-      value: "8",
-      unit: "items",
-      cardType: "total",
-    },
-    {
-      title: "EXPIRED",
-      value: "2",
-      unit: "items",
-      cardType: "expired",
-    },
-    {
-      title: "SOLD OUT",
-      value: "0",
-      unit: "items",
-      cardType: "soldout",
-    },
-    {
-      title: "LOW STOCK ALERT",
-      value: "3",
-      unit: "items left",
-      cardType: "lowstock",
-    },
+    { title: "TOTAL PRODUCTS", value: stats.totalProducts, unit: "items", cardType: "total" },
+    { title: "EXPIRED", value: stats.expired, unit: "items", cardType: "expired" },
+    { title: "SOLD OUT", value: stats.soldOut, unit: "items", cardType: "soldout" },
+    { title: "LOW STOCK ALERT", value: stats.lowStock, unit: "items ", cardType: "lowstock" },
   ];
 
   return (
     <div className="stats-cards-grid">
-      {statsList.map((stat, index) => (
-        <StatsCard
-          key={index}
-          title={stat.title}
-          value={stat.value}
-          unit={stat.unit}
-          cardType={stat.cardType}
-        />
+      {statsList.map((stat) => (
+        <StatsCard key={stat.cardType} {...stat} />
       ))}
     </div>
   );

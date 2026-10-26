@@ -1,41 +1,26 @@
-import React, { useState, useMemo } from "react";
+import React, { useMemo } from "react";
 import "./SearchBar.css";
 
-const SearchBar = ({ onSearch, onCategorySelect }) => {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [activeCategory, setActiveCategory] = useState("All");
-
+const SearchBar = ({
+  searchTerm,
+  setSearchTerm,
+  activeCategory,
+  setActiveCategory,
+}) => {
   const categories = useMemo(() => {
     return ["All", "Cakes", "Donuts", "Macarons", "Cupcakes", "Cookies"];
   }, []);
 
-  const handleSearchChange = (event) => {
-    const value = event.target.value;
-    setSearchTerm(value);
-    if (onSearch) {
-      onSearch(value);
-    }
-  };
-
-  const handleCategoryClick = (category) => {
-    setActiveCategory(category);
-    if (onCategorySelect) {
-      onCategorySelect(category);
-    }
-  };
-
   return (
     <div className="search-section">
- 
       <input
         type="text"
         className="search-input"
         placeholder="Search item or category..."
         value={searchTerm}
-        onChange={handleSearchChange}
+        onChange={(e) => setSearchTerm(e.target.value)}
       />
 
-   
       <div className="category-list">
         {categories.map((category) => (
           <button
@@ -43,7 +28,7 @@ const SearchBar = ({ onSearch, onCategorySelect }) => {
             className={`category-button ${
               activeCategory === category ? "active" : ""
             }`}
-            onClick={() => handleCategoryClick(category)}
+            onClick={() => setActiveCategory(category)}
           >
             {category}
           </button>

@@ -1,7 +1,7 @@
 import React from "react";
 import "./ProductCards.css";
+import { LOW_STOCK_LIMIT as Limit } from "../../Hooks/useInventory";
 
-const Limit = 5;
 
 
 const checkStockStatus = (currentQuantity) => {

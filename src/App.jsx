@@ -3,7 +3,8 @@ import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import StatsCards from "./components/StatsCards/StatsCards";
 import SearchBar from "./components/SearchBar/SearchBar";
-import ItemList from "./components/ItemCards/ItemList"; // Sahi import
+import ProductCards from "./components/Products/ProductCards";
+import ProductItems from "./components/Products/ProductItems";
 
 function App() {
   return (
@@ -11,7 +12,7 @@ function App() {
       <Header />
       <StatsCards />
       <SearchBar />
-      <ItemList />
+      <ProductItems />
 
       
       <Footer />

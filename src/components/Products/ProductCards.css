@@ -1,0 +1,158 @@
+.item-grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 25px;
+  padding: 20px 20px 40px 20px;
+}
+
+.item-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: #fcf8f2;
+  padding: 15px 15px 22px 15px;
+  border-radius: 8px;
+  border: 1px solid #f3ebd8;
+  width: 100%;
+  max-width: 220px;
+  margin: 0 auto;
+}
+
+.category-tag {
+  align-self: flex-start;
+  background-color: #fff;
+  color: #db2777;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: bold;
+  border: 1px solid #fbcfe8;
+  margin-bottom: 8px;
+}
+
+.card-image-container {
+  text-align: center;
+  margin-bottom: 8px;
+  width: 100%;
+}
+
+.card-image {
+  width: 100%;
+  max-height: 100px;
+  object-fit: contain;
+}
+
+.item-title {
+  font-size: 14px;
+  font-weight: bold;
+  color: #1f2937;
+  margin: 5px 0;
+}
+
+.item-price {
+  font-size: 13px;
+  font-weight: bold;
+  color: #db2777;
+  margin-bottom: 8px;
+}
+
+.quantity-control {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.qty-btn {
+  background: #fff;
+  border: 1px solid #d1d5db;
+  padding: 2px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.qty-count {
+  font-weight: bold;
+  font-size: 14px;
+  margin: 0;
+}
+
+.stock-status {
+  text-align: center;
+  padding: 5px;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 12px;
+  margin-top: 8px;
+  margin-bottom: 12px;
+  width: 100%;
+}
+
+.In-Stock {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+.Low-Stock {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+.Out-Of-Stock {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+.card-actions {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.edit-btn {
+  display: inline-block;
+  width: 47%;
+  padding: 6px;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: center;
+  font-size: 12px;
+  background-color: #e2e8f0;
+  color: #334155;
+  border: 1px solid #cbd5e1;
+}
+
+.edit-btn:hover {
+  background-color: #cbd5e1;
+}
+
+.delete-btn {
+  display: inline-block;
+  width: 47%;
+  padding: 6px;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: center;
+  font-size: 12px;
+  background-color: #fce7f3;
+  color: #9d174d;
+  border: 1px solid #fbcfe8;
+}
+
+.delete-btn:hover {
+  background-color: #fbcfe8;
+}
+
+.empty-message {
+  text-align: center;
+  font-size: 16px;
+  color: #666;
+  margin-top: 30px;
+}

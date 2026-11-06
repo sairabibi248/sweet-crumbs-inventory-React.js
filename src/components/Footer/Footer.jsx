@@ -2,6 +2,10 @@ import React from "react";
 import "./Footer.css";
 import cakeFooterImg from "../../assets/footer.png";
 
+/**
+ * Shown at the bottom of every page and takes no props.
+ */
+
 const Footer = () => {
   return (
     <footer className="footer-container">

@@ -5,7 +5,7 @@ import "./StatsCard.css";
 const StatsCards = ({ stats }) => {
   const statsList = [
     { title: "TOTAL PRODUCTS", value: stats.totalProducts, unit: "items", cardType: "total" },
-    { title: "EXPIRED", value: stats.expired, unit: "items", cardType: "expired" },
+   { title: "IN STOCK", value: stats.inStock, unit: "items", cardType: "instock" },
     { title: "SOLD OUT", value: stats.soldOut, unit: "items", cardType: "soldout" },
     { title: "LOW STOCK ALERT", value: stats.lowStock, unit: "items ", cardType: "lowstock" },
   ];

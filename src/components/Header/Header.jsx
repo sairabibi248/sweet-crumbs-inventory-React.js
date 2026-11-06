@@ -2,7 +2,13 @@ import React from "react";
 import "./Header.css";
 import logoImg from "../../assets/logo.png";
 
-const Header = () => {
+/**
+ * Top bar of the site with the Sweet Crumbs logo, name, subtitle and the "Add Item" button.
+ *
+ * @param {object} props
+ * @param {function} props.onAdd - Opens the popup to add a new product
+ */
+const Header = ({ onAdd }) => {
   return (
     <header className="header-container">
       <div className="sweetcrumbs">
@@ -16,6 +22,10 @@ const Header = () => {
           <h2 className="subtitle">Inventory Management System</h2>
         </div>
       </div>
+
+      <button type="button" className="add-item-btn" onClick={onAdd}>
+        + Add Item
+      </button>
     </header>
   );
 };

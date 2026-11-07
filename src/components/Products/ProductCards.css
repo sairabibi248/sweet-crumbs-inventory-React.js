@@ -130,13 +130,13 @@
   cursor: pointer;
   text-align: center;
   font-size: 12px;
- background-color: #efeafa;
+  background-color: #efeafa;
   color: #5b4691;
   border: 1px solid #d4c9ef;
 }
 
 .edit-btn:hover {
-    background-color: #6f58a8;
+  background-color: #6f58a8;
   color: #ffffff;
   border-color: #6f58a8;
 }
@@ -150,14 +150,14 @@
   cursor: pointer;
   text-align: center;
   font-size: 12px;
-   background-color: #ffffff;
+  background-color: #ffffff;
   color: #b4233f;
   border: 1px solid #f0c2cc;
 }
 
 .delete-btn:hover {
- background-color: #ce4661;
-   color: #ffffff;
+  background-color: #ce4661;
+  color: #ffffff;
   border-color: #ac4b5e;
 }
 

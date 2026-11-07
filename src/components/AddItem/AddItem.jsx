@@ -77,7 +77,12 @@ const AddItem = ({ onClose, onSave }) => {
           )}
           <label className="upload-btn">
             Upload image
-            <input type="file" accept="image/*" onChange={handleImageChange} hidden />
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleImageChange}
+              hidden
+            />
           </label>
         </div>
 
@@ -87,7 +92,10 @@ const AddItem = ({ onClose, onSave }) => {
             className="modal-input"
             placeholder="e.g. Blueberry Muffin"
             value={title}
-            onChange={(e) => { setTitle(e.target.value); setError(""); }}
+            onChange={(e) => {
+              setTitle(e.target.value);
+              setError("");
+            }}
           />
         </label>
 
@@ -99,7 +107,9 @@ const AddItem = ({ onClose, onSave }) => {
             onChange={(e) => setCategory(e.target.value)}
           >
             {categories.map((cat) => (
-              <option key={cat} value={cat}>{cat}</option>
+              <option key={cat} value={cat}>
+                {cat}
+              </option>
             ))}
           </select>
         </label>
@@ -113,7 +123,10 @@ const AddItem = ({ onClose, onSave }) => {
               min="1"
               placeholder="0"
               value={price}
-              onChange={(e) => { setPrice(e.target.value); setError(""); }}
+              onChange={(e) => {
+                setPrice(e.target.value);
+                setError("");
+              }}
             />
           </label>
 
@@ -125,7 +138,10 @@ const AddItem = ({ onClose, onSave }) => {
               min="0"
               placeholder="0"
               value={quantity}
-              onChange={(e) => { setQuantity(e.target.value); setError(""); }}
+              onChange={(e) => {
+                setQuantity(e.target.value);
+                setError("");
+              }}
             />
           </label>
         </div>

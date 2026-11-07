@@ -6,7 +6,7 @@ import logoImg from "../../assets/logo.png";
  * Top bar of the site with the Sweet Crumbs logo, name, subtitle and the "Add Item" button.
  *
  * @param {object} props
- * @param {function} props.onAdd - Opens the popup to add a new product
+ * @param {function} props.onAdd -  (prop)Take data from dashboard Opens the popup to add a new product
  */
 const Header = ({ onAdd }) => {
   return (

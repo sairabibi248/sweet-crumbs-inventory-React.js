@@ -1,5 +1,9 @@
 import { useState, useMemo } from "react";
 
+/**
+ * Product images from the assets/images folder.
+ * Each one is used as the "image" of a product in initialItems below.
+ */
 import strawberryCakeImg from "../assets/images/Cake1.png";
 import cake2Img from "../assets/images/Cake2.png";
 import cake3Img from "../assets/images/Cake3.png";
@@ -13,6 +17,7 @@ import macaron2Img from "../assets/images/Macaron2.png";
 
 /**
  * Structure of a single product in the inventory.
+ * Every product in the app has these 6 fields.
  *
  * @typedef {object} Item
  * @property {number} id - Unique id of the product
@@ -24,52 +29,143 @@ import macaron2Img from "../assets/images/Macaron2.png";
  */
 
 /**
- * Quantity below which a product is marked as "Low Stock".
- * Used by the stats cards and the product cards.
+ * A product is marked as Low Stock when its quantity is below this number.
+ * Used in ProductCards.jsx to choose the stock label.
  */
 export const LowStockLimit = 5;
 
 /**
  * Products shown when the site first loads.
+ * Used only once, as the starting value of the items state below.
  *
  * @type {Item[]}
  */
 const initialItems = [
-  { id: 1, title: "Strawberry Truffle Delight", category: "Cakes", price: 2400, quantity: 8, image: strawberryCakeImg },
-  { id: 2, title: "Choco Chip Cupcake", category: "Cupcakes", price: 250, quantity: 8, image: cupcake2Img },
-  { id: 3, title: "Glazed Donut", category: "Donuts", price: 180, quantity: 0, image: donut2Img },
-  { id: 4, title: "Strawberry Vanilla Macaron", category: "Macarons", price: 350, quantity: 20, image: macaron1Img },
-  { id: 5, title: "Cherry Vanilla Cake", category: "Cakes", price: 2800, quantity: 5, image: cake2Img },
-  { id: 6, title: "Vanilla Cupcake", category: "Cupcakes", price: 200, quantity: 10, image: cupcake1Img },
-  { id: 7, title: "Chocolate Chip Cookie", category: "Cookies", price: 150, quantity: 15, image: cookie1Img },
-  { id: 8, title: "Chocolate Frosted Donut", category: "Donuts", price: 220, quantity: 6, image: dounutsImg },
-  { id: 9, title: "Pistachio Kiwi Macaron", category: "Macarons", price: 300, quantity: 18, image: macaron2Img },
-  { id: 10, title: "Rainbow Sprinkle Cake", category: "Cakes", price: 3200, quantity: 3, image: cake3Img },
+  {
+    id: 1,
+    title: "Strawberry Truffle Delight",
+    category: "Cakes",
+    price: 2400,
+    quantity: 8,
+    image: strawberryCakeImg,
+  },
+  {
+    id: 2,
+    title: "Choco Chip Cupcake",
+    category: "Cupcakes",
+    price: 250,
+    quantity: 8,
+    image: cupcake2Img,
+  },
+  {
+    id: 3,
+    title: "Glazed Donut",
+    category: "Donuts",
+    price: 180,
+    quantity: 0,
+    image: donut2Img,
+  },
+  {
+    id: 4,
+    title: "Strawberry Vanilla Macaron",
+    category: "Macarons",
+    price: 350,
+    quantity: 20,
+    image: macaron1Img,
+  },
+  {
+    id: 5,
+    title: "Cherry Vanilla Cake",
+    category: "Cakes",
+    price: 2800,
+    quantity: 5,
+    image: cake2Img,
+  },
+  {
+    id: 6,
+    title: "Vanilla Cupcake",
+    category: "Cupcakes",
+    price: 200,
+    quantity: 10,
+    image: cupcake1Img,
+  },
+  {
+    id: 7,
+    title: "Chocolate Chip Cookie",
+    category: "Cookies",
+    price: 150,
+    quantity: 15,
+    image: cookie1Img,
+  },
+  {
+    id: 8,
+    title: "Chocolate Frosted Donut",
+    category: "Donuts",
+    price: 220,
+    quantity: 6,
+    image: dounutsImg,
+  },
+  {
+    id: 9,
+    title: "Pistachio Kiwi Macaron",
+    category: "Macarons",
+    price: 300,
+    quantity: 18,
+    image: macaron2Img,
+  },
+  {
+    id: 10,
+    title: "Rainbow Sprinkle Cake",
+    category: "Cakes",
+    price: 3200,
+    quantity: 3,
+    image: cake3Img,
+  },
 ];
 
 /**
  * Custom hook that holds all inventory data and logic.
- * Stores the product list, search text and selected category,
- * and provides functions to add,editd,delete and change quantity.
+ * Stores the product list,search text,selected category
+ * provides functions to add, edit, delete and change quantity.
+ * Called in Dashboard.jsx, which passes everything to the other components.
  *
- * @returns {object} Filtered items, stats, search and category state, and all inventory actions
+ * @returns {object} Filtered items, stats, search and category values, and all inventory functions
  */
 export const useInventory = () => {
+  /**
+   * The full product list. Starts with initialItems.
+   * Changed by changeQuantity, setQuantity, deleteItem, updateItem and addItem.
+   * Used to build filteredItems and stats.
+   */
   const [items, setItems] = useState(initialItems);
+
+  /**
+   * Text typed in the search box. Starts empty.
+   * Changed by SearchBar.jsx through setSearchTerm.
+   * Used in filteredItems.
+   */
   const [searchTerm, setSearchTerm] = useState("");
+
+  /**
+   * Category button that is selected. Starts as "All".
+   * Changed by SearchBar.jsx through setActiveCategory.
+   * Used in filteredItems.
+   */
   const [activeCategory, setActiveCategory] = useState("All");
 
   /**
    * Products that match both the search text and the selected category.
    * Recalculated only when items, search text or category change.
+   * Returned as "items" and shown as cards by ProductItems.jsx.
    *
+   * Search bar
    * @type {Item[]}
    */
+
   const filteredItems = useMemo(() => {
     const term = searchTerm.toLowerCase();
-    
-    return items.filter((item) => {
 
+    return items.filter((item) => {
       const matchesCategory =
         activeCategory === "All" ||
         item.category.toLowerCase() === activeCategory.toLowerCase();
@@ -83,67 +179,88 @@ export const useInventory = () => {
   }, [items, searchTerm, activeCategory]);
 
   /**
-   * Counts shown in the stats cards.
-   * Calculated from all products, not only the filtered ones.
+   * Counts shown in the 4 stats cards (StatsCards.jsx).
+   * Calculated from all products, not only the filtered ones,
+   * so the numbers do not change when the user searches.
+   * Recalculated only when items change.
+   *
+   * Stats Cards( TotalProduct ,InStock,LowStock,SoldOut)
    */
+
   const stats = useMemo(() => {
     return {
       totalProducts: items.length,
       inStock: items.filter((item) => item.quantity >= LowStockLimit).length,
       soldOut: items.filter((item) => item.quantity === 0).length,
       lowStock: items.filter(
-        (item) => item.quantity > 0 && item.quantity < LowStockLimit
+        (item) => item.quantity > 0 && item.quantity < LowStockLimit,
       ).length,
     };
   }, [items]);
 
   /**
-   * Increases or decreases the quantity of a product.
+   * Increases or decreases the quantity of a product by the given amount.
    * Quantity never goes below 0.
+   * Called by the + and - buttons on a product card.
    *
    * @param {number} id - Id of the product to change
    * @param {number} amount - +1 to increase, -1 to decrease
+   *
+   * Change Quantity with + and - Buttons
    */
+
   const changeQuantity = (id, amount) => {
     setItems((prev) =>
       prev.map((item) =>
         item.id === id
           ? { ...item, quantity: Math.max(0, item.quantity + amount) }
-          : item
-      )
+          : item,
+      ),
     );
   };
 
-    /**
+  /**
    * Sets the quantity of a product to an exact number.
-   * Used by the slider, which gives a full value instead of +1 or -1.
+   * Called by the slider (rc-slider) and the typed quantity input on a product card,
+   * because they give a full value instead of +1 or -1.
    *
    * @param {number} id - Id of the product to change
-   * @param {number} newQuantity - New quantity chosen on the slider
+   * @param {number} newQuantity - New quantity chosen by the user
+   *
+   * Change Quantity with InputBox and rc-slider
    */
+
+  /**Change Quantity with InputBox and rc-slider */
+
   const setQuantity = (id, newQuantity) => {
     setItems((prev) =>
       prev.map((item) =>
-        item.id === id ? { ...item, quantity: newQuantity } : item
-      )
+        item.id === id ? { ...item, quantity: newQuantity } : item,
+      ),
     );
   };
 
   /**
    * Removes a product from the list.
+   * Called by the Delete button on a product card, after the user confirms.
    *
    * @param {number} id - Id of the product to delete
+   * OnDelet Item  Delet Button
    */
+
   const deleteItem = (id) => {
     setItems((prev) => prev.filter((item) => item.id !== id));
   };
 
   /**
    * Replaces the details of an existing product with new values.
-   * Called when the user clicks "Save changes" in the edit popup.
+   * Called when the user clicks "Save changes" in the Edit popup (Edit.jsx).
+   * The id stays the same, everything else comes from newData.
    *
    * @param {number} id - Id of the product to update
-   * @param {object} newData - New title, category, price, quantity and image
+   * @param {object} newData - New title, category, price, quantity and image from the Edit form
+   *
+   * OnUpDate Item  Edit Button
    */
   const updateItem = (id, newData) => {
     const updatedItems = [];
@@ -170,9 +287,12 @@ export const useInventory = () => {
 
   /**
    * Adds a new product to the end of the list.
+   * Called when the user clicks Add item in the AddItem popup (through handleAdd in Dashboard.jsx).
    * A unique id is created from the current time.
    *
-   * @param {object} newData - Title, category, price, quantity and image of the new product
+   * @param {object} newData - Title, category, price, quantity and image from the AddItem form
+   *
+   * AddItem +AddItem Button
    */
   const addItem = (newData) => {
     const newItem = {
@@ -201,4 +321,3 @@ export const useInventory = () => {
     addItem,
   };
 };
- 

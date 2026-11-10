@@ -4,3 +4,11 @@
   body {
     font-family: Arial, sans-serif;
   }
+  .quantity-slider .rc-slider-track {
+  background-color: #b85e83;
+}
+
+.quantity-slider .rc-slider-handle {
+  border-color: #b85e83;
+  opacity: 1;
+}

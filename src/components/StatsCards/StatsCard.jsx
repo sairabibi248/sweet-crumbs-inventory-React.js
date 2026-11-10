@@ -11,18 +11,18 @@ import React from "react";
  * @param {string} props.title - Text at the top of the card
  * @param {number} props.value - The number to show, from the stats in useInventory
  * @param {string} props.unit - Small word next to the number
- * @param {string} props.cardType - CSS class that sets the card's color (total, instock, soldout, lowstock)
+ * @param {string} props.cardType - Tailwind classes for the card's background and border color
  */
 const StatsCard = ({ title, value, unit, cardType }) => {
   return (
-    <div className={`stats-card ${cardType}`}>
-      <div className="stats-card-header">
-        <div className="stats-title">{title}</div>
+    <div className={`flex-1 py-4 px-5 rounded-xl border ${cardType}`}>
+      <div className="mb-3">
+        <div className="text-[11px] font-bold text-[#7a5c43]">{title}</div>
       </div>
 
-      <div className="stats-card-body">
-        <h2 className="stats-value">{value}</h2>
-        {unit && <div className="stats-unit">{unit}</div>}
+      <div className="flex items-baseline gap-2">
+        <h2 className="text-2xl font-bold text-[#4a2c11]">{value}</h2>
+        {unit && <div className="text-xs text-[#8c7361]">{unit}</div>}
       </div>
     </div>
   );

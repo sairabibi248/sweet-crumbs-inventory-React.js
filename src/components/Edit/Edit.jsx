@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "./Edit.css";
 
 const categories = ["Cakes", "Donuts", "Macarons", "Cupcakes", "Cookies"];
 
@@ -42,13 +41,23 @@ const Edit = ({ item, onClose, onSave }) => {
   };
 
   return (
-    <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-box" onClick={(e) => e.stopPropagation()}>
-        <h2 className="modal-title">Edit product</h2>
+    <div
+      className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-[rgba(0,0,0,0.4)] z-50 py-7.5 px-5"
+      onClick={onClose}
+    >
+      <div
+        className="bg-[#fffafc] w-100 max-w-[90%] rounded-xl p-6 flex flex-col gap-3.5"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <h2 className="text-xl font-bold text-[#4a2c11]">Edit product</h2>
 
-        <div className="modal-image-section">
-          <img src={image} alt={title} className="modal-image" />
-          <label className="upload-btn">
+        <div className="flex items-center gap-4">
+          <img
+            src={image}
+            alt={title}
+            className="h-20 bg-[#f9ecf3] rounded-lg border border-[#fbcfe8]"
+          />
+          <label className="bg-white border border-[#fbcfe8] text-[#9d174d] py-2 px-3.5 rounded-md text-[13px] font-bold cursor-pointer hover:bg-[#fce7f3]">
             Change image
             <input
               type="file"
@@ -59,10 +68,10 @@ const Edit = ({ item, onClose, onSave }) => {
           </label>
         </div>
 
-        <label className="modal-label">
+        <label className="w-full flex flex-col gap-1 text-xs font-bold text-[#7a5c43]">
           Name
           <input
-            className="modal-input"
+            className="w-full py-2 px-2.5 text-sm font-normal border border-[#fbcfe8] rounded-md bg-white text-[#1f2937] outline-none focus:border-[#db2777]"
             value={title}
             onChange={(e) => {
               setTitle(e.target.value);
@@ -71,10 +80,10 @@ const Edit = ({ item, onClose, onSave }) => {
           />
         </label>
 
-        <label className="modal-label">
+        <label className="w-full flex flex-col gap-1 text-xs font-bold text-[#7a5c43]">
           Category
           <select
-            className="modal-input"
+            className="w-full py-2 px-2.5 text-sm font-normal border border-[#fbcfe8] rounded-md bg-white text-[#1f2937] outline-none focus:border-[#db2777]"
             value={category}
             onChange={(e) => setCategory(e.target.value)}
           >
@@ -86,11 +95,11 @@ const Edit = ({ item, onClose, onSave }) => {
           </select>
         </label>
 
-        <div className="modal-row">
-          <label className="modal-label">
+        <div className="flex gap-3">
+          <label className="w-full flex flex-col gap-1 text-xs font-bold text-[#7a5c43]">
             Price (Rs)
             <input
-              className="modal-input"
+              className="w-full py-2 px-2.5 text-sm font-normal border border-[#fbcfe8] rounded-md bg-white text-[#1f2937] outline-none focus:border-[#db2777]"
               type="number"
               min="1"
               value={price}
@@ -101,10 +110,10 @@ const Edit = ({ item, onClose, onSave }) => {
             />
           </label>
 
-          <label className="modal-label">
+          <label className="w-full flex flex-col gap-1 text-xs font-bold text-[#7a5c43]">
             Quantity
             <input
-              className="modal-input"
+              className="w-full py-2 px-2.5 text-sm font-normal border border-[#fbcfe8] rounded-md bg-white text-[#1f2937] outline-none focus:border-[#db2777]"
               type="number"
               min="0"
               value={quantity}
@@ -116,13 +125,21 @@ const Edit = ({ item, onClose, onSave }) => {
           </label>
         </div>
 
-        {error && <p className="modal-error">{error}</p>}
+        {error && <p className="text-[13px] text-[#b91c1c]">{error}</p>}
 
-        <div className="modal-actions">
-          <button type="button" className="modal-cancel" onClick={onClose}>
+        <div className="flex justify-end gap-2.5">
+          <button
+            type="button"
+            className="bg-white text-[#4b5563] border border-[#d1d5db] py-2 px-4.5 rounded-md font-bold text-[13px] cursor-pointer hover:bg-[#f3f4f6]"
+            onClick={onClose}
+          >
             Cancel
           </button>
-          <button type="button" className="modal-save" onClick={handleSave}>
+          <button
+            type="button"
+            className="bg-[#b85e83] text-white border border-[#b85e83] py-2 px-4.5 rounded-md font-bold text-[13px] cursor-pointer hover:bg-[#a04a6f]"
+            onClick={handleSave}
+          >
             Save changes
           </button>
         </div>

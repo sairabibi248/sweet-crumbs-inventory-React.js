@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import ProductCards from "./ProductCards";
 import Edit from "../Edit/Edit";
-import "./ProductCards.css";
 
 /**
  * Shows all product cards in a grid and opens the Edit popup when needed.
@@ -43,12 +42,12 @@ const ProductItems = ({
   };
 
   if (items.length === 0) {
-    return <p className="empty-message">No items found.</p>;
+    return <p className="text-center text-base text-[#666] mt-[30px]">No items found.</p>;
   }
 
   return (
     <>
-      <div className="item-grid-container">
+      <div className="grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-[25px] px-5 pt-5 pb-10">
         {items.map((item) => (
           <ProductCards
             key={item.id}
